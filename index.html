@@ -8,6 +8,52 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  .background-name{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:28vw;
+    font-weight:900;
+    color:rgba(255,255,255,0.03);
+    z-index:1;
+    pointer-events:none;
+    line-height:1;
+    letter-spacing:-10px;
+}
+
+.hero-inner{
+    position:relative;
+    z-index:5;
+}
+
+.hero-role{
+    color:#E8823A;
+    font-size:20px;
+    font-weight:600;
+    margin-bottom:25px;
+    letter-spacing:1px;
+}
+
+.hero-name{
+    font-size:clamp(80px,10vw,140px);
+}
+
+.hero-surname{
+    font-size:clamp(80px,10vw,140px);
+}
+
+.hero-title{
+    max-width:800px;
+    margin:auto;
+}
+
+.hero-coords{
+    margin-top:25px;
+    color:#8FA3B8;
+    font-size:14px;
+    font-family:'JetBrains Mono', monospace;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --ink:#0D0F14;--paper:#F7F6F2;--port:#1A3A5C;--tide:#2B6CB0;

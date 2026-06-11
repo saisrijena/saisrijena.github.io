@@ -10,7 +10,180 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
+.hero{
+    min-height:100vh;
+    background:#080C14;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 30px;
+}
 
+.hero-grid{
+    position:absolute;
+    inset:0;
+    background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size:60px 60px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:10;
+    max-width:1000px;
+}
+
+.hero-tag{
+    color:#E8823A;
+    font-size:14px;
+    letter-spacing:3px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    color:white;
+    font-size:clamp(60px,10vw,130px);
+    line-height:.9;
+    margin-bottom:20px;
+}
+
+.typing-container{
+    color:#8FA3B8;
+    font-size:26px;
+    min-height:40px;
+    margin-bottom:30px;
+}
+
+.hero-description{
+    max-width:800px;
+    margin:auto;
+    color:#8FA3B8;
+    line-height:1.8;
+    font-size:18px;
+    margin-bottom:50px;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn-primary{
+    background:#E8823A;
+    color:white;
+    padding:15px 35px;
+    text-decoration:none;
+}
+
+.btn-secondary{
+    border:1px solid rgba(255,255,255,.15);
+    color:white;
+    padding:15px 35px;
+    text-decoration:none;
+}
+
+.hero-stats{
+    margin-top:60px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.stat{
+    border:1px solid rgba(255,255,255,.08);
+    padding:25px;
+    background:rgba(255,255,255,.03);
+}
+
+.stat h2{
+    color:white;
+    font-size:45px;
+}
+
+.stat span{
+    color:#8FA3B8;
+}
+
+.glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(120px);
+}
+
+.glow1{
+    width:500px;
+    height:500px;
+    background:#1A3A5C;
+    left:-200px;
+    top:-100px;
+}
+
+.glow2{
+    width:500px;
+    height:500px;
+    background:#E8823A;
+    right:-200px;
+    bottom:-100px;
+    opacity:.2;
+}
+
+.floating-card{
+    position:absolute;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.08);
+    padding:15px 20px;
+    color:white;
+    border-radius:15px;
+    animation:float 6s ease-in-out infinite;
+}
+
+.card1{left:5%;top:25%;}
+.card2{right:5%;top:25%;}
+.card3{left:10%;bottom:20%;}
+.card4{right:10%;bottom:20%;}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+}
+
+.ship-container{
+    position:absolute;
+    bottom:80px;
+    width:100%;
+}
+
+.ship{
+    font-size:55px;
+    animation:sail 25s linear infinite;
+}
+
+@keyframes sail{
+from{transform:translateX(-150px);}
+to{transform:translateX(calc(100vw + 200px));}
+}
+
+@media(max-width:768px){
+
+.hero-stats{
+grid-template-columns:1fr 1fr;
+}
+
+.floating-card{
+display:none;
+}
+
+.hero h1{
+font-size:60px;
+}
+}
 /* PREMIUM HERO */
 
 .hero{
@@ -691,19 +864,50 @@ LinkedIn
 </section>
 
 <script>
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.75);
-}, { passive: true });
+<script>
 
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-}, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(r => io.observe(r));
+const words = [
+"Business Analyst",
+"Data Analyst",
+"Power BI Developer",
+"AI Automation Enthusiast",
+"SQL & Python Learner"
+];
 
-document.querySelectorAll('.skills-grid .skill-group, .projects-grid .project-card, .cert-grid .cert-card').forEach((el, i) => {
-  el.style.transitionDelay = `${i * 0.07}s`;
-});
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+const typing = document.getElementById("typing");
+
+function typeEffect(){
+
+let currentWord = words[wordIndex];
+
+if(!deleting){
+typing.textContent =
+currentWord.substring(0,charIndex++);
+}else{
+typing.textContent =
+currentWord.substring(0,charIndex--);
+}
+
+if(!deleting && charIndex === currentWord.length+1){
+deleting = true;
+setTimeout(typeEffect,1200);
+return;
+}
+
+if(deleting && charIndex === 0){
+deleting = false;
+wordIndex = (wordIndex+1)%words.length;
+}
+
+setTimeout(typeEffect,deleting ? 50 : 100);
+}
+
+typeEffect();
+
 </script>
 </body>
 </html>

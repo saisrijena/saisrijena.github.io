@@ -281,6 +281,68 @@ section{padding:110px 80px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
 .reveal.visible{opacity:1;transform:none}
+/* ===== MOVING SHIP ===== */
+
+.ship-container{
+    position:absolute;
+    bottom:100px;
+    left:-200px;
+    width:100%;
+    z-index:2;
+    overflow:hidden;
+}
+
+.ship{
+    font-size:50px;
+    animation:sail 25s linear infinite;
+}
+
+@keyframes sail{
+    from{
+        transform:translateX(-150px);
+    }
+    to{
+        transform:translateX(calc(100vw + 300px));
+    }
+}
+
+/* ===== RADAR EFFECT ===== */
+
+.radar{
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    border:1px solid rgba(43,108,176,0.15);
+    overflow:hidden;
+    z-index:1;
+}
+
+.radar::before{
+    content:'';
+    position:absolute;
+    width:50%;
+    height:50%;
+    background:linear-gradient(
+        45deg,
+        rgba(43,108,176,0.35),
+        transparent
+    );
+    transform-origin:bottom right;
+    animation:rotateRadar 8s linear infinite;
+}
+
+@keyframes rotateRadar{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
 </style>
 </head>
 <body>

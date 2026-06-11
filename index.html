@@ -1,105 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sri Sairam Jena — Business Analyst</title>
+<meta name="description" content="Business Analyst specialising in AI Automation, Data Analytics, Logistics & Supply Chain. Power BI · DAX · SQL · GenAI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D0F14;--paper:#F7F6F2;--port:#1A3A5C;--tide:#2B6CB0;
+  --signal:#E8823A;--mist:#8FA3B8;--rail:#D4CFC6;--white:#FFFFFF;
+  --dark:#080C14;
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Space Grotesk',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 56px;background:rgba(8,12,20,0.7);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);transition:background .3s,border-color .3s}
+nav.scrolled{background:rgba(247,246,242,0.96);border-bottom-color:var(--rail)}
+nav.scrolled .nav-logo{color:var(--port)}
+nav.scrolled .nav-links a{color:var(--ink);opacity:.65}
+nav.scrolled .nav-links a:hover{color:var(--signal);opacity:1}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);letter-spacing:.08em;text-transform:uppercase;transition:color .3s;text-decoration:none}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:13px;font-weight:500;color:rgba(255,255,255,.5);text-decoration:none;letter-spacing:.04em;transition:color .2s,opacity .2s}
+.nav-links a:hover{color:var(--signal);opacity:1}
+.nav-cta{padding:8px 20px;background:var(--signal);color:#fff;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:#D4712D}
+nav.scrolled .nav-cta{background:var(--signal)}
+
+/* ── HERO ── */
+.hero{min-height:100vh;background:var(--dark);position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;overflow:hidden;padding:120px 48px 0}
+.hero-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0,rgba(255,255,255,.022) 1px,transparent 1px,transparent 72px),repeating-linear-gradient(90deg,rgba(255,255,255,.022) 0,rgba(255,255,255,.022) 1px,transparent 1px,transparent 72px)}
+.hero-glow{position:absolute;bottom:-80px;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(ellipse at center,rgba(26,58,92,.5) 0%,transparent 68%);pointer-events:none}
+.hero-glow2{position:absolute;top:5%;right:-60px;width:560px;height:560px;background:radial-gradient(ellipse at center,rgba(232,130,58,.055) 0%,transparent 68%);pointer-events:none}
+.hero-scan{position:absolute;left:0;right:0;height:1px;background:rgba(232,130,58,.15);animation:scanMove 9s linear infinite}
+@keyframes scanMove{0%{top:-2px;opacity:0}5%{opacity:1}95%{opacity:1}100%{top:100%;opacity:0}}
+.hero-float{position:absolute;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(143,163,184,.18);letter-spacing:.1em;pointer-events:none;animation:floatDrift 20s ease-in-out infinite;white-space:nowrap}
+.hero-float:nth-child(1){top:16%;left:4%;animation-delay:0s}
+.hero-float:nth-child(2){top:30%;right:5%;animation-delay:-5s}
+.hero-float:nth-child(3){top:60%;left:2%;animation-delay:-9s}
+.hero-float:nth-child(4){bottom:24%;right:3%;animation-delay:-13s}
+.hero-float:nth-child(5){top:78%;left:20%;animation-delay:-7s}
+.hero-float:nth-child(6){top:12%;right:20%;animation-delay:-11s}
+@keyframes floatDrift{0%,100%{transform:translateY(0);opacity:.8}50%{transform:translateY(-14px);opacity:.3}}
+.hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;max-width:980px;width:100%}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--signal);margin-bottom:36px;padding:9px 22px;border:1px solid rgba(232,130,58,.3);background:rgba(232,130,58,.07);animation:fadeUp .6s .1s both}
+.hero-tag-dot{width:6px;height:6px;background:var(--signal);border-radius:50%;animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.65)}}
+.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(68px,9.5vw,128px);line-height:.9;color:#fff;letter-spacing:-.03em;animation:nameReveal .9s cubic-bezier(.16,1,.3,1) both;margin-bottom:2px}
+.hero-surname{font-family:'DM Serif Display',serif;font-size:clamp(68px,9.5vw,128px);line-height:.9;letter-spacing:-.03em;margin-bottom:32px;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.45);animation:nameReveal .9s .15s cubic-bezier(.16,1,.3,1) both}
+@keyframes nameReveal{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+.hero-divider{display:flex;align-items:center;gap:18px;margin-bottom:24px;width:100%;max-width:580px;animation:fadeUp .7s .38s both}
+.hero-divider-line{flex:1;height:1px;background:rgba(255,255,255,.1)}
+.hero-divider-text{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(143,163,184,.5);white-space:nowrap}
+.hero-title{font-size:clamp(15px,2vw,19px);font-weight:400;color:rgba(143,163,184,.85);margin-bottom:20px;line-height:1.65;max-width:540px;animation:fadeUp .7s .48s both}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:48px;animation:fadeUp .7s .56s both}
+.hero-pill{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(143,163,184,.55);padding:5px 12px;border:1px solid rgba(143,163,184,.15);text-transform:uppercase}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:80px;animation:fadeUp .7s .64s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.btn-primary{padding:15px 38px;background:var(--signal);color:#fff;border:none;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s,transform .15s;text-transform:uppercase}
+.btn-primary:hover{background:#D4712D;transform:translateY(-2px)}
+.btn-outline{padding:15px 38px;background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.2);font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s,color .2s,border-color .2s;text-transform:uppercase}
+.btn-outline:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.4);color:#fff}
+.hero-stats{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);width:100%;max-width:980px;border-top:1px solid rgba(255,255,255,.07);animation:fadeUp .7s .78s both}
+.stat-card{padding:30px 24px;border-right:1px solid rgba(255,255,255,.07);text-align:center;transition:background .25s;position:relative;overflow:hidden;cursor:default}
+.stat-card:last-child{border-right:none}
+.stat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--signal);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.stat-card:hover{background:rgba(255,255,255,.035)}
+.stat-card:hover::after{transform:scaleX(1)}
+.stat-num{font-family:'DM Serif Display',serif;font-size:44px;color:#fff;line-height:1;margin-bottom:7px}
+.stat-unit{font-family:'Space Grotesk',sans-serif;font-size:20px;color:var(--signal)}
+.stat-label{font-size:10.5px;font-weight:600;color:rgba(143,163,184,.5);letter-spacing:.1em;text-transform:uppercase;line-height:1.4}
+.hero-coords{position:relative;z-index:2;margin-top:18px;margin-bottom:32px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:rgba(143,163,184,.35);display:flex;align-items:center;gap:9px;animation:fadeUp .7s 1s both}
+.hero-coords-dot{width:5px;height:5px;border-radius:50%;background:var(--signal);opacity:.6}
+
+/* ── SECTION SHARED ── */
+section{padding:110px 80px}
+.section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--signal);margin-bottom:14px;display:flex;align-items:center;gap:14px}
+.section-eyebrow::after{content:'';width:48px;height:1px;background:var(--signal)}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(34px,4.5vw,58px);color:var(--port);line-height:1.05;margin-bottom:56px;letter-spacing:-.025em}
+
+/* ── SKILLS ── */
+#skills{background:var(--white);position:relative;overflow:hidden}
+#skills::before{content:'SKILLS';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:'DM Serif Display',serif;font-size:200px;color:rgba(26,58,92,.03);line-height:1;pointer-events:none;white-space:nowrap}
+.skills-intro{font-size:17px;color:#4A5568;max-width:580px;line-height:1.75;margin-bottom:56px;border-left:3px solid var(--signal);padding-left:24px}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rail)}
+.skill-group{background:var(--white);padding:40px 36px;border-right:1px solid var(--rail);border-bottom:1px solid var(--rail);transition:background .25s,transform .25s;position:relative;overflow:hidden}
+.skill-group:nth-child(3n){border-right:none}
+.skill-group:nth-child(n+4){border-bottom:none}
+.skill-group::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--signal);transform:scaleY(0);transform-origin:bottom;transition:transform .3s ease}
+.skill-group:hover{background:#F5F9FF;transform:translateY(-2px)}
+.skill-group:hover::before{transform:scaleY(1)}
+.skill-group-header{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.skill-group-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--signal);letter-spacing:.1em;opacity:.7}
+.skill-group-name{font-weight:700;font-size:15px;color:var(--port);letter-spacing:.01em}
+.skill-tags{display:flex;flex-wrap:wrap;gap:7px}
+.skill-tag{font-size:11.5px;font-weight:500;padding:5px 11px;background:var(--paper);color:#4A5568;border:1px solid var(--rail);letter-spacing:.02em;transition:background .18s,color .18s,border-color .18s}
+.skill-tag:hover{background:var(--port);color:#fff;border-color:var(--port)}
+.skill-tag.hot{background:var(--port);color:#fff;border-color:var(--port)}
+.skill-tag.hot:hover{background:var(--signal);border-color:var(--signal)}
+
+/* ── EXPERIENCE ── */
+#experience{background:var(--paper);position:relative}
+.exp-wrapper{display:grid;grid-template-columns:1fr 2fr;gap:0;border:1px solid var(--rail)}
+.exp-sidebar{background:var(--port);padding:52px 40px;display:flex;flex-direction:column;justify-content:space-between}
+.exp-sidebar-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:24px}
+.exp-company-name{font-family:'DM Serif Display',serif;font-size:36px;color:#fff;line-height:1.1;margin-bottom:12px}
+.exp-badge{display:inline-block;padding:6px 14px;background:rgba(232,130,58,.15);border:1px solid rgba(232,130,58,.35);color:var(--signal);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px}
+.exp-meta-item{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.5);margin-bottom:8px}
+.exp-meta-item::before{content:'▸';color:var(--signal);font-size:10px}
+.exp-sidebar-bottom{margin-top:40px}
+.exp-tech-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:10px}
+.exp-tech-list{display:flex;flex-wrap:wrap;gap:6px}
+.exp-tech{font-size:11px;padding:4px 9px;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.45);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em}
+.exp-main{padding:52px 48px;background:var(--white)}
+.exp-role-title{font-family:'DM Serif Display',serif;font-size:32px;color:var(--port);margin-bottom:8px;line-height:1.15}
+.exp-tagline{font-size:15px;color:var(--mist);margin-bottom:32px;font-style:italic}
+.exp-desc{font-size:15px;color:#374151;line-height:1.75;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid var(--rail)}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:0}
+.exp-bullet{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--rail);align-items:flex-start}
+.exp-bullet:last-child{border-bottom:none}
+.exp-bullet-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--signal);opacity:.7;flex-shrink:0;margin-top:3px;letter-spacing:.05em}
+.exp-bullet-text{font-size:14px;color:#374151;line-height:1.65}
+
+/* ── PROJECTS ── */
+#projects{background:var(--dark);position:relative;overflow:hidden}
+#projects::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0,rgba(255,255,255,.018) 1px,transparent 1px,transparent 72px),repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0,rgba(255,255,255,.018) 1px,transparent 1px,transparent 72px)}
+#projects .section-title{color:#fff}
+#projects .section-eyebrow::after{background:var(--signal)}
+.projects-intro{font-size:16px;color:rgba(143,163,184,.7);max-width:560px;line-height:1.7;margin-bottom:64px}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06)}
+.project-card{background:var(--dark);padding:44px 38px;transition:background .25s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.project-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--signal);transform:scaleY(0);transform-origin:bottom;transition:transform .35s ease}
+.project-card:hover{background:rgba(255,255,255,.04)}
+.project-card:hover::before{transform:scaleY(1)}
+.project-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(232,130,58,.55);letter-spacing:.14em;margin-bottom:20px}
+.project-icon{width:44px;height:44px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:20px;flex-shrink:0}
+.project-name{font-family:'DM Serif Display',serif;font-size:21px;color:#fff;margin-bottom:14px;line-height:1.25;flex-grow:0}
+.project-challenge{font-size:13.5px;color:rgba(143,163,184,.65);margin-bottom:28px;line-height:1.65;flex-grow:1}
+.project-footer{display:flex;flex-direction:column;gap:10px;margin-top:auto}
+.project-result{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;padding:7px 14px;background:rgba(232,130,58,.1);color:var(--signal);border:1px solid rgba(232,130,58,.25);letter-spacing:.04em;align-self:flex-start}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px}
+.project-tag{font-size:10px;font-family:'JetBrains Mono',monospace;color:rgba(143,163,184,.4);padding:3px 8px;border:1px solid rgba(143,163,184,.12);letter-spacing:.06em}
+
+/* ── CERTIFICATIONS ── */
+#certifications{background:var(--white);position:relative;overflow:hidden}
+#certifications::before{content:'CERT';position:absolute;left:-10px;bottom:-20px;font-family:'DM Serif Display',serif;font-size:200px;color:rgba(26,58,92,.03);line-height:1;pointer-events:none}
+.cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rail);border:1px solid var(--rail)}
+.cert-card{background:var(--white);padding:44px 40px;position:relative;overflow:hidden;transition:background .25s}
+.cert-card:hover{background:#F5F9FF}
+.cert-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--signal);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.cert-card:hover::after{transform:scaleX(1)}
+.cert-card-accent{position:absolute;top:40px;right:40px;font-family:'DM Serif Display',serif;font-size:72px;color:rgba(26,58,92,.05);line-height:1;pointer-events:none}
+.cert-badge{display:inline-block;padding:5px 12px;background:rgba(232,130,58,.08);border:1px solid rgba(232,130,58,.22);color:var(--signal);font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px}
+.cert-name{font-family:'DM Serif Display',serif;font-size:24px;color:var(--port);margin-bottom:8px;line-height:1.2}
+.cert-issuer{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--mist);letter-spacing:.08em;margin-bottom:18px;text-transform:uppercase}
+.cert-desc{font-size:13.5px;color:#4A5568;line-height:1.7}
+.cert-skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
+.cert-skill{font-size:10.5px;padding:4px 10px;background:var(--paper);border:1px solid var(--rail);color:#4A5568;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+
+/* ── EDUCATION ── */
+#education{background:var(--paper)}
+.edu-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.edu-card{background:var(--white);border:1px solid var(--rail);padding:44px 40px;position:relative;overflow:hidden;transition:border-color .25s,box-shadow .25s}
+.edu-card:hover{border-color:var(--tide);box-shadow:0 8px 40px rgba(26,58,92,.08)}
+.edu-card-year{position:absolute;right:32px;bottom:28px;font-family:'DM Serif Display',serif;font-size:80px;color:rgba(26,58,92,.05);line-height:1;pointer-events:none}
+.edu-icon{width:48px;height:48px;background:var(--port);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:24px;flex-shrink:0}
+.edu-degree{font-family:'DM Serif Display',serif;font-size:22px;color:var(--port);margin-bottom:10px;line-height:1.2}
+.edu-school{font-weight:600;font-size:14px;color:var(--ink);margin-bottom:6px}
+.edu-period{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--mist);letter-spacing:.08em;margin-bottom:4px;text-transform:uppercase}
+.edu-location{font-size:13px;color:var(--mist);display:flex;align-items:center;gap:6px}
+.edu-location::before{content:'◎';font-size:10px;color:var(--signal)}
+
+/* ── CONTACT ── */
+#contact{background:var(--port);position:relative;overflow:hidden;text-align:center;padding:120px 48px}
+#contact::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0,rgba(255,255,255,.025) 1px,transparent 1px,transparent 64px),repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0,rgba(255,255,255,.025) 1px,transparent 1px,transparent 64px)}
+.contact-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(ellipse at center,rgba(43,108,176,.3) 0%,transparent 65%);pointer-events:none}
+.contact-inner{position:relative;z-index:2}
+#contact .section-eyebrow{justify-content:center}
+#contact .section-eyebrow::after{display:none}
+#contact .section-eyebrow::before{content:'';width:48px;height:1px;background:var(--signal)}
+#contact .section-title{color:#fff;margin-bottom:20px}
+.contact-sub{font-size:17px;color:rgba(143,163,184,.75);max-width:520px;margin:0 auto 60px;line-height:1.75}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);max-width:840px;margin:0 auto 64px;border:1px solid rgba(255,255,255,.08)}
+.contact-card{background:rgba(255,255,255,.04);padding:36px 28px;text-decoration:none;transition:background .25s;display:flex;flex-direction:column;align-items:center;gap:12px;position:relative;overflow:hidden}
+.contact-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--signal);transform:scaleX(0);transform-origin:center;transition:transform .3s}
+.contact-card:hover{background:rgba(255,255,255,.09)}
+.contact-card:hover::after{transform:scaleX(1)}
+.contact-card-icon{font-size:28px}
+.contact-card-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(143,163,184,.45)}
+.contact-card-value{font-size:14px;font-weight:500;color:#fff;letter-spacing:.02em}
+.contact-availability{display:inline-flex;align-items:center;gap:10px;padding:12px 28px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);font-size:13px;letter-spacing:.04em;margin-bottom:40px}
+.contact-avail-dot{width:7px;height:7px;border-radius:50%;background:#4ADE80;animation:pulse 2s ease-in-out infinite}
+.footer-bar{border-top:1px solid rgba(255,255,255,.08);padding-top:32px;display:flex;justify-content:space-between;align-items:center;max-width:840px;margin:0 auto;position:relative;z-index:2}
+.footer-name{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.1em;text-transform:uppercase}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;letter-spacing:.04em;transition:color .2s}
+.footer-links a:hover{color:var(--signal)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .skills-grid{grid-template-columns:1fr 1fr}
+  .skill-group:nth-child(3n){border-right:1px solid var(--rail)}
+  .skill-group:nth-child(2n){border-right:none}
+  .skill-group:nth-child(n+5){border-bottom:none}
+  .projects-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  nav{padding:14px 22px}
+  .nav-links{gap:16px}
+  .nav-cta{display:none}
+  section{padding:72px 24px}
+  .hero{padding:100px 22px 0}
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .stat-card{padding:22px 16px}
+  .hero-float{display:none}
+  .skills-grid{grid-template-columns:1fr}
+  .skill-group{border-right:none!important;border-bottom:1px solid var(--rail)!important}
+  .exp-wrapper{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:1fr}
+  .cert-grid{grid-template-columns:1fr}
+  .edu-wrapper{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-bar{flex-direction:column;gap:16px;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <a class="nav-logo" href="#home">SSJ</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:sairam.jena001@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- ── HERO ── -->
 <section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-scan"></div>
+  <div class="hero-float">BRD · FRD · UAT · SDLC</div>
+  <div class="hero-float">Power BI · DAX · SQL · Python</div>
+  <div class="hero-float">COCHIN PORT · 10°51′N 76°16′E</div>
+  <div class="hero-float">CONTRACT MGMT · CRM · ORACLE APEX</div>
+  <div class="hero-float">AGILE · SPRINT · BACKLOG</div>
+  <div class="hero-float">CLAUDE.AI · CHATGPT · GENAI</div>
 
-<div class="hero-grid"></div>
-<div class="hero-glow"></div>
-
-<div class="background-name">SSJ</div>
-
-<div class="hero-inner">
-
-    <div class="hero-tag">
-        <span class="hero-tag-dot"></span>
-        BUSINESS ANALYST • DATA ANALYST • AI AUTOMATION
-    </div>
-
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="hero-tag-dot"></span>Business Analyst &nbsp;·&nbsp; Open to Opportunities</div>
     <h1 class="hero-name">Sri Sairam</h1>
     <div class="hero-surname">Jena</div>
-
-    <div class="hero-role">
-        Business Analyst @ AD Ports Group
-    </div>
-
     <div class="hero-divider">
-        <div class="hero-divider-line"></div>
-        <div class="hero-divider-text">
-            Transforming Data Into Decisions
-        </div>
-        <div class="hero-divider-line"></div>
+      <div class="hero-divider-line"></div>
+      <div class="hero-divider-text">AI Automation · Data Analytics · Logistics & Supply Chain</div>
+      <div class="hero-divider-line"></div>
     </div>
-
-    <p class="hero-title">
-        Business Analyst specializing in Logistics,
-        Supply Chain, Data Analytics and AI Automation.
-        Delivering measurable business impact through
-        Power BI, SQL, Python and modern AI solutions.
-    </p>
-
+    <p class="hero-title">Turning messy port &amp; logistics workflows into clean, automated systems —<br>from requirement gathering all the way to live dashboards.</p>
     <div class="hero-pills">
-        <span class="hero-pill">Power BI</span>
-        <span class="hero-pill">SQL</span>
-        <span class="hero-pill">Python</span>
-        <span class="hero-pill">DAX</span>
-        <span class="hero-pill">Oracle APEX</span>
-        <span class="hero-pill">GenAI</span>
+      <span class="hero-pill">Power BI</span><span class="hero-pill">DAX</span><span class="hero-pill">SQL</span>
+      <span class="hero-pill">Oracle APEX</span><span class="hero-pill">GenAI Prompting</span>
+      <span class="hero-pill">Python Automation</span><span class="hero-pill">BRD / FRD</span><span class="hero-pill">Agile / Scrum</span>
     </div>
-
     <div class="hero-cta">
-
-        <a href="mailto:sairam.jena001@gmail.com?subject=Job Opportunity"
-           class="btn-primary">
-           Hire Me
-        </a>
-
-        <a href="Sri_Sairam_Jena_CV.pdf"
-           target="_blank"
-           class="btn-outline">
-           View Resume
-        </a>
-
-        <a href="https://www.linkedin.com/in/sri-sairam-jena"
-           target="_blank"
-           class="btn-outline">
-           LinkedIn
-        </a>
-
+      <a href="mailto:sairam.jena001@gmail.com" class="btn-primary">Get in Touch</a>
+      <a href="https://www.linkedin.com/in/sri-sairam-jena" target="_blank" class="btn-outline">View LinkedIn →</a>
     </div>
+  </div>
 
-</div>
-
-<div class="hero-stats">
-
+  <div class="hero-stats">
     <div class="stat-card">
-        <div class="stat-num">5+</div>
-        <div class="stat-label">
-            Projects Delivered
-        </div>
+      <div class="stat-num">1<span class="stat-unit">+</span></div>
+      <div class="stat-label">Years<br>Experience</div>
     </div>
-
     <div class="stat-card">
-        <div class="stat-num">70%</div>
-        <div class="stat-label">
-            Process Efficiency
-        </div>
+      <div class="stat-num">40<span class="stat-unit">–</span>70<span class="stat-unit">%</span></div>
+      <div class="stat-label">Manual Effort<br>Reduced</div>
     </div>
-
     <div class="stat-card">
-        <div class="stat-num">1+</div>
-        <div class="stat-label">
-            Years Experience
-        </div>
+      <div class="stat-num">5<span class="stat-unit">+</span></div>
+      <div class="stat-label">Projects<br>Delivered</div>
     </div>
-
     <div class="stat-card">
-        <div class="stat-num">AI</div>
-        <div class="stat-label">
-            Automation Focus
-        </div>
+      <div class="stat-num">3</div>
+      <div class="stat-label">Systems<br>Automated</div>
     </div>
-
-</div>
-
-<div class="hero-coords">
-    Cochin, Kerala • Open to Opportunities • 30-Day Notice Period
-</div>
-
+  </div>
+  <div class="hero-coords"><span class="hero-coords-dot"></span>Cochin, Kerala, India &nbsp;·&nbsp; Open to Relocation</div>
 </section>
+
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="reveal">
+    <div class="section-eyebrow">Core Competencies</div>
+    <h2 class="section-title">Built for modern<br>business problems</h2>
+    <p class="skills-intro">A rare combination of structured BA methodology, hands-on data engineering, and AI-native tooling — all applied inside a live port and logistics environment.</p>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-group">
+      <div class="skill-group-header">
+        <span class="skill-group-num">01</span>
+        <div class="skill-group-name">Business Analysis</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag hot">BRD / FRD</span><span class="skill-tag hot">User Stories</span>
+        <span class="skill-tag hot">UAT Support</span><span class="skill-tag">Acceptance Criteria</span>
+        <span class="skill-tag">RTM</span><span class="skill-tag">Gap Analysis</span>
+        <span class="skill-tag">Impact Analysis</span><span class="skill-tag">Stakeholder Interviews</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-header">
+        <span class="skill-group-num">02</span>
+        <div class="skill-group-name">Data &amp; Analytics</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag hot">Power BI</span><span class="skill-tag hot">DAX</span>
+        <span class="skill-tag hot">SQL</span><span class="skill-tag">Tableau</span>
+        <span class="skill-tag">Advanced Excel</span><span class="skill-tag">KPI Reporting</span>
+        <span class="skill-tag">Dashboard Dev</span><span class="skill-tag">Data Mapping</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-header">
+        <span class="skill-group-num">03</span>
+        <div class="skill-group-name">AI &amp; Automation</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag hot">Prompt Engineering</span><span class="skill-tag hot">Python Automation</span>
+        <span class="skill-tag">Claude.ai</span><span class="skill-tag">ChatGPT</span>
+        <span class="skill-tag">GenAI-Assisted Coding</span><span class="skill-tag">Code Debugging</span>
+        <span class="skill-tag">Doc Automation</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-header">
+        <span class="skill-group-num">04</span>
+        <div class="skill-group-name">Tools &amp; Platforms</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag hot">Oracle APEX</span><span class="skill-tag">CRM Systems</span>
+        <span class="skill-tag">Jira</span><span class="skill-tag">Confluence</span>
+        <span class="skill-tag">Microsoft Visio</span><span class="skill-tag">Power BI Service</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-header">
+        <span class="skill-group-num">05</span>
+        <div class="skill-group-name">Domain Knowledge</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag hot">Ports &amp; Logistics</span><span class="skill-tag hot">Supply Chain</span>
+        <span class="skill-tag">Contract Management</span><span class="skill-tag">Billing Automation</span>
+        <span class="skill-tag">CRM</span><span class="skill-tag">Grain Trade</span><span class="skill-tag">Market Research</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-header">
+        <span class="skill-group-num">06</span>
+        <div class="skill-group-name">SDLC &amp; Agile</div>
+      </div>
+      <div class="skill-tags">
+        <span class="skill-tag hot">Agile / Scrum</span><span class="skill-tag">Sprint Planning</span>
+        <span class="skill-tag">Backlog Management</span><span class="skill-tag">Change Requests</span>
+        <span class="skill-tag">Production Support</span><span class="skill-tag">API Concepts</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="reveal">
+    <div class="section-eyebrow">Work History</div>
+    <h2 class="section-title">Where I've<br>driven results</h2>
+  </div>
+  <div class="exp-wrapper reveal">
+    <div class="exp-sidebar">
+      <div>
+        <div class="exp-sidebar-label">Current Employer</div>
+        <div class="exp-company-name">AD Ports<br>Group</div>
+        <div class="exp-badge">Oct 2024 – Present</div>
+        <div class="exp-meta-item">Cochin, Kerala</div>
+        <div class="exp-meta-item">Ports &amp; Logistics</div>
+        <div class="exp-meta-item">Full-time · On-site</div>
+      </div>
+      <div class="exp-sidebar-bottom">
+        <div class="exp-tech-label">Tech Stack</div>
+        <div class="exp-tech-list">
+          <span class="exp-tech">Power BI</span><span class="exp-tech">DAX</span><span class="exp-tech">SQL</span>
+          <span class="exp-tech">Oracle APEX</span><span class="exp-tech">Python</span>
+          <span class="exp-tech">Claude.ai</span><span class="exp-tech">Excel</span>
+          <span class="exp-tech">Jira</span><span class="exp-tech">Confluence</span>
+        </div>
+      </div>
+    </div>
+    <div class="exp-main">
+      <div class="exp-role-title">Business Analyst</div>
+      <div class="exp-tagline">Bridging IT, operations, and leadership in a live port environment</div>
+      <p class="exp-desc">Embedded within AD Ports Group's Cochin operations, I translate complex port and logistics workflows into structured system requirements, data models, and automation logic — coordinating across IT, QA, and business stakeholders from sprint kick-off to UAT sign-off.</p>
+      <ul class="exp-bullets">
+        <li class="exp-bullet">
+          <span class="exp-bullet-num">01</span>
+          <span class="exp-bullet-text">Prepare BRD, FRD, user stories, acceptance criteria, process flows, and UAT support documents for logistics and port management systems across Oracle APEX and CRM platforms.</span>
+        </li>
+        <li class="exp-bullet">
+          <span class="exp-bullet-num">02</span>
+          <span class="exp-bullet-text">Build Power BI dashboards with DAX measures and SQL queries delivering real-time visibility into trade throughput, customer KPIs, contract performance, and operational metrics.</span>
+        </li>
+        <li class="exp-bullet">
+          <span class="exp-bullet-num">03</span>
+          <span class="exp-bullet-text">Lead cross-functional coordination between IT, QA, and business stakeholders throughout the full SDLC — from requirement workshops to go-live support.</span>
+        </li>
+        <li class="exp-bullet">
+          <span class="exp-bullet-num">04</span>
+          <span class="exp-bullet-text">Apply GenAI tools (Claude.ai, ChatGPT) for code debugging, documentation automation, and workflow prototyping — cutting documentation effort by ~50% and accelerating test case generation.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="reveal">
+    <div class="section-eyebrow">Key Projects</div>
+    <h2 class="section-title">Work that moved<br>the needle</h2>
+    <p class="projects-intro">Every project below came from a real operational pain point. The metric beside each one is the measured outcome — not an estimate.</p>
+  </div>
+  <div class="projects-grid reveal">
+    <div class="project-card">
+      <div class="project-num">01 / ORACLE APEX</div>
+      <div class="project-icon">⚙️</div>
+      <div class="project-name">Pipeline Management &amp; Forecasting Automation</div>
+      <p class="project-challenge">The team was managing contracts, forecasts, and pipeline updates manually in Excel — fragmented tracking, weak audit readiness, and zero version control. I proposed and documented an Oracle APEX automation concept, prepared BRD/FRD, and coordinated end-to-end IT delivery.</p>
+      <div class="project-footer">
+        <span class="project-result">↓ 40% manual tracking effort</span>
+        <div class="project-tags">
+          <span class="project-tag">BRD / FRD</span><span class="project-tag">Oracle APEX</span><span class="project-tag">Agile</span><span class="project-tag">UAT</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">02 / CRM & BILLING</div>
+      <div class="project-icon">🗂️</div>
+      <div class="project-name">Customized Contract CRM &amp; Billing Reporting System</div>
+      <p class="project-challenge">The business needed a single CRM system to manage bespoke contracts, generate invoice outputs, and report on billed customers. I owned the requirement lifecycle — from stakeholder workshops through backend logic review and full UAT validation of billing rules.</p>
+      <div class="project-footer">
+        <span class="project-result">↓ 60% manual billing intervention</span>
+        <div class="project-tags">
+          <span class="project-tag">CRM</span><span class="project-tag">SDLC</span><span class="project-tag">UAT</span><span class="project-tag">SQL</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">03 / AI PROTOTYPE</div>
+      <div class="project-icon">🤖</div>
+      <div class="project-name">AI-Based Contract Extraction &amp; Billing Automation Prototype</div>
+      <p class="project-challenge">Signed contracts required manual review and data re-entry before billing could begin — slow, error-prone, and unscalable. Using prompt engineering and Python automation concepts, I designed an AI-assisted pipeline to extract key billing fields (rates, dates, escalation clauses) directly from uploaded contract PDFs.</p>
+      <div class="project-footer">
+        <span class="project-result">↓ 60% contract review effort</span>
+        <div class="project-tags">
+          <span class="project-tag">Prompt Eng.</span><span class="project-tag">Python</span><span class="project-tag">GenAI</span><span class="project-tag">Billing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CERTIFICATIONS ── -->
+<section id="certifications">
+  <div class="reveal">
+    <div class="section-eyebrow">Certifications &amp; Projects</div>
+    <h2 class="section-title">Credentials backed<br>by real work</h2>
+  </div>
+  <div class="cert-grid reveal">
+    <div class="cert-card">
+      <div class="cert-card-accent">①</div>
+      <div class="cert-badge">IABAC Certified</div>
+      <div class="cert-name">Data Analyst Certification</div>
+      <div class="cert-issuer">International Association of Business Analytics Certifications</div>
+      <p class="cert-desc">Earned through two applied analytics projects covering job market intelligence and supply chain diagnostics. Validated skills across SQL, Power BI, DAX, Tableau, and GenAI-assisted Python scripting — not a multiple-choice exam.</p>
+      <div class="cert-skills">
+        <span class="cert-skill">SQL</span><span class="cert-skill">Power BI</span><span class="cert-skill">DAX</span>
+        <span class="cert-skill">Tableau</span><span class="cert-skill">Python</span><span class="cert-skill">GenAI</span>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-card-accent">②</div>
+      <div class="cert-badge">Project · PRDA-04</div>
+      <div class="cert-name">Job Market Analysis</div>
+      <div class="cert-issuer">IABAC Certification Project</div>
+      <p class="cert-desc">Analyzed hiring demand, salary benchmarks, and required skill distributions across industries and states. Delivered interactive Power BI and Tableau dashboards with DAX-driven KPIs to support workforce planning and hiring strategy decisions for HR teams.</p>
+      <div class="cert-skills">
+        <span class="cert-skill">Power BI</span><span class="cert-skill">DAX KPIs</span>
+        <span class="cert-skill">Tableau</span><span class="cert-skill">SQL</span><span class="cert-skill">Salary Analysis</span>
+      </div>
+    </div>
+    <div class="cert-card" style="border-top:1px solid var(--rail)">
+      <div class="cert-card-accent">③</div>
+      <div class="cert-badge">Project · CDACL-003</div>
+      <div class="cert-name">Supply Chain Analysis Dashboard</div>
+      <div class="cert-issuer">IABAC Certification Project</div>
+      <p class="cert-desc">Built a product-wise supply chain comparison dashboard in Power BI tracking inventory, revenue, supplier performance, lead times, shipping costs, and defect rates across the full product lifecycle. Identified bottlenecks and surfaced cost optimisation opportunities worth surfacing to operations leadership.</p>
+      <div class="cert-skills">
+        <span class="cert-skill">Power BI</span><span class="cert-skill">Supply Chain</span>
+        <span class="cert-skill">Inventory Analysis</span><span class="cert-skill">KPI Dashboards</span>
+      </div>
+    </div>
+    <div class="cert-card" style="border-top:1px solid var(--rail)">
+      <div class="cert-card-accent">+</div>
+      <div class="cert-badge">In Progress</div>
+      <div class="cert-name">Expanding into Product &amp; Advanced Analytics</div>
+      <div class="cert-issuer">Continuous Learning</div>
+      <p class="cert-desc">Actively developing skills in advanced DAX patterns, Python data pipelines, and AI-augmented BA workflows. Exploring product analytics and how AI tooling is reshaping the modern business analyst's role in enterprise environments.</p>
+      <div class="cert-skills">
+        <span class="cert-skill">Advanced DAX</span><span class="cert-skill">Python Pipelines</span>
+        <span class="cert-skill">Product Analytics</span><span class="cert-skill">LLM Workflows</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EDUCATION ── -->
+<section id="education">
+  <div class="reveal">
+    <div class="section-eyebrow">Education</div>
+    <h2 class="section-title">The foundation<br>behind the work</h2>
+  </div>
+  <div class="edu-wrapper reveal">
+    <div class="edu-card">
+      <div class="edu-card-year">2024</div>
+      <div class="edu-icon">🚢</div>
+      <div class="edu-degree">MBA — International Transportation &amp; Logistics Management</div>
+      <div class="edu-school">Indian Maritime University</div>
+      <div class="edu-period">Sep 2022 – Jun 2024</div>
+      <div class="edu-location">Tamil Nadu, India</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-card-year">2021</div>
+      <div class="edu-icon">🏗️</div>
+      <div class="edu-degree">B.Tech — Civil Engineering</div>
+      <div class="edu-school">Kalinga Institute of Industrial Technology (KIIT)</div>
+      <div class="edu-period">Sep 2018 – Jun 2021</div>
+      <div class="edu-location">Odisha, India</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="contact-glow"></div>
+  <div class="contact-inner">
+    <div class="section-eyebrow">Let's Connect</div>
+    <h2 class="section-title">Ready to contribute<br>from day one</h2>
+    <p class="contact-sub">Open to Business Analyst, Data Analyst, or AI Automation roles in logistics, supply chain, or enterprise operations. Based in Cochin — willing to relocate anywhere.</p>
+
+    <div class="contact-availability">
+      <span class="contact-avail-dot"></span>
+      Actively looking · Available immediately
+    </div>
+
+    <div class="contact-grid">
+      <a href="mailto:sairam.jena001@gmail.com" class="contact-card">
+        <span class="contact-card-icon">✉</span>
+        <span class="contact-card-label">Email</span>
+        <span class="contact-card-value">sairam.jena001@gmail.com</span>
+      </a>
+      <a href="tel:+918838307096" class="contact-card">
+        <span class="contact-card-icon">📞</span>
+        <span class="contact-card-label">Phone</span>
+        <span class="contact-card-value">+91 88383 07096</span>
+      </a>
+      <a href="https://www.linkedin.com/in/sri-sairam-jena" target="_blank" class="contact-card">
+        <span class="contact-card-icon">🔗</span>
+        <span class="contact-card-label">LinkedIn</span>
+        <span class="contact-card-value">sri-sairam-jena</span>
+      </a>
+    </div>
+
+    <div class="footer-bar">
+      <div class="footer-name">Sri Sairam Jena · Business Analyst · 2025</div>
+      <div class="footer-links">
+        <a href="#home">Top</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.75);
+}, { passive: true });
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(r => io.observe(r));
+
+document.querySelectorAll('.skills-grid .skill-group, .projects-grid .project-card, .cert-grid .cert-card').forEach((el, i) => {
+  el.style.transitionDelay = `${i * 0.07}s`;
+});
+</script>
+</body>
+</html>
